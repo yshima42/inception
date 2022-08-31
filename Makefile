@@ -1,13 +1,18 @@
 COMPOSE_PATH=./srcs/docker-compose.yml
 
-all:
-	docker-compose -f $(COMPOSE_PATH) up
+all: build up
+
+build:
+	docker compose -f $(COMPOSE_PATH) build
+
+up:
+	docker compose -f $(COMPOSE_PATH) up
 
 down:
-	docker-compose -f $(COMPOSE_PATH) down
+	docker compose -f $(COMPOSE_PATH) down
 
 re:
-	docker-compose -f $(COMPOSE_PATH) up --build
+	docker compose -f $(COMPOSE_PATH) up --build
 
 clean:
 	docker stop $$(docker ps -qa);\

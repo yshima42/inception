@@ -5,9 +5,13 @@ RUN apt-get update && apt-get install -y \
 
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
-COPY ./tools/sqlcreate.sh /
+COPY ./tools/sqlcreate.sh /usr/local/bin
 
-RUN bash sqlcreate.sh
+RUN bash /usr/local/bin/sqlcreate.sh
+
+RUN cat dbcreate.sql
+
+RUN echo ${MYSQL_DATABASE}
 
 RUN service mysql start && mysql < dbcreate.sql && rm -f dbcreate.sql sqlcreate.sh
 
