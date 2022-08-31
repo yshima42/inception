@@ -2,9 +2,13 @@ FROM debian:buster
 RUN apt-get update && apt-get install -y \
 	mariadb-server \
 	vim
-EXPOSE 3306
 
-COPY ./tools/dbcreate.sql /
-# RUN service mysql start && mysql < /dbcreate.sql && rm -f /dbcreate.sql
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
-CMD ["bash"]
+COPY ./tools/sqlcreate.sh /
+
+RUN bash sqlcreate.sh
+
+RUN service mysql start && mysql < dbcreate.sql && rm -f dbcreate.sql sqlcreate.sh
+
+CMD ["mysqld_safe"]

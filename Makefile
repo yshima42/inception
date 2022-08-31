@@ -24,6 +24,11 @@ wordpress:
 	docker build -t unit_wordpress ./srcs/requirements/wordpress/
 	docker run -it --rm unit_wordpress bash
 
+.PHONY: setup
+setup:
+	sudo mkdir -p /home/yshimazu/data/mariadb
+	sudo mkdir -p /home/yshimazu/data/wordpress
+	grep '127.0.0.1 yshimazu.42.fr' /etc/hosts > /dev/null || sudo -- sh -c "echo '127.0.0.1 yshimazu.42.fr' >> /etc/hosts"
 
 
 .PHONY: all down re clean
