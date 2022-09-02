@@ -14,5 +14,6 @@ RUN openssl req -x509 \
                 -subj "/C=JP/ST=Tokyo/L=Setagaya/O=42Tokyo/OU=learner/CN=https:\/\/github.com\/yshima42/emailAddress=yshimazu@student.42tokyo.jp"
 
 COPY ./conf/default.conf etc/nginx/sites-enabled/default
+COPY ./tools/setting.sh /usr/local/bin
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["bash", "/usr/local/bin/setting.sh"]
