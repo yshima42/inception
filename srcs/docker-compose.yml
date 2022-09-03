@@ -35,7 +35,7 @@ services:
       - wordpress:/var/www/wordpress
     networks:
       - inception_network
-    restart: always
+    restart: on-failure
 
   wordpress:
     depends_on:
@@ -51,7 +51,7 @@ services:
       - inception_network
     expose:
       - 9000
-    restart: always
+    restart: on-failure
 
   mariadb:
     container_name: mariadb
@@ -65,4 +65,4 @@ services:
     image: mariadb:${TAG}
     env_file:
       - .env
-    restart: always
+    restart: on-failure

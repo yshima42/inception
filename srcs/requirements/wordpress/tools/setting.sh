@@ -28,10 +28,10 @@ if [ $? -ne 0 ]; then
 		--role=author
 	
 	chown -R www-data:www-data *
-	chmod -R 755 /var/www/*
+	chmod -R 775 /var/www/*
+	mkdir -p /run/php/;
 
 fi
 
-#bash /usr/sbin/php-fpm7.3 -F
 echo "done"
 php-fpm7.3 -F

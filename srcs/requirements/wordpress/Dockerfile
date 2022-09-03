@@ -19,13 +19,13 @@ RUN apt-get update && apt-get install -y \
 #
 #COPY ./conf/wp-config.php ./var/www/wordpress/
 
-#RUN mkdir ./run/php/
+RUN mkdir ./run/php/
 
 WORKDIR /var/www/wordpress/
 
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-	&& chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp \
-	&& mkdir -p /var/www/localhost/wordpress
+	&& chmod +x wp-cli.phar \
+	&& mv wp-cli.phar /usr/local/bin/wp
 
 RUN mkdir -p /var/run/php/ \
 	&& mkdir -p /var/log/php/ \
