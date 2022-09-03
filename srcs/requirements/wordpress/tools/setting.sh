@@ -24,9 +24,9 @@ if [ $? -ne 0 ]; then
 	wp user create --allow-root \
 		${WP_USER} \
 		${WP_USER_EMAIL} \
-		--user_pass=${WP_USER_PASSWORD}
+		--user_pass=${WP_USER_PASSWORD} \
+		--role=author
 	
-	chown -R www-data wordpress
 	chown -R www-data:www-data *
 	chmod -R 755 /var/www/*
 

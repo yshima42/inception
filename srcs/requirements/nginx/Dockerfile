@@ -16,4 +16,4 @@ RUN openssl req -x509 \
 COPY ./conf/default.conf etc/nginx/sites-enabled/default
 COPY ./tools/setting.sh /usr/local/bin
 
-CMD ["bash", "/usr/local/bin/setting.sh"]
+ENTRYPOINT ["bash", "/usr/local/bin/setting.sh"]
