@@ -7,8 +7,7 @@ RUN apt-get update && apt-get install -y \
 	wget \
 	curl \
 	vim \
-	mariadb-client \
-	sendmail
+	mariadb-client
 
 #COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d
 #
