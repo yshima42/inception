@@ -19,21 +19,19 @@ RUN apt-get update && apt-get install -y \
 #
 #COPY ./conf/wp-config.php ./var/www/wordpress/
 
-RUN mkdir ./run/php/
-
-WORKDIR /var/www/wordpress/
-
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	&& chmod +x wp-cli.phar \
 	&& mv wp-cli.phar /usr/local/bin/wp
 
-RUN mkdir -p /var/run/php/ \
-	&& mkdir -p /var/log/php/ \
-	&& touch /var/log/php/access.log \
-	&& touch /var/log/php/error.log
+#RUN mkdir -p /var/run/php/ \
+#	&& mkdir -p /var/log/php/ \
+#	&& touch /var/log/php/access.log \
+#	&& touch /var/log/php/error.log
 
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY ./tools/setting.sh /usr/local/bin
+
+WORKDIR /var/www/wordpress/
 
 #CMD ./usr/sbin/php-fpm7.3 -F
 ENTRYPOINT ["bash", "/usr/local/bin/setting.sh"]
